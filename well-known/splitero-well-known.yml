@@ -1,0 +1,97 @@
+generated: '2026-08-29'
+method: probed
+source: >-
+  Direct HTTP probes of the /.well-known/ surface on every host Splitero controls that was
+  discoverable from apis.yml, DNS enumeration of splitero.com, and the login flow.
+hosts:
+- host: https://www.splitero.com
+  note: >-
+    Marketing site, Cloudflare in front of a Next.js origin. Every /.well-known/ path returns the
+    site's own 404 page (30,645 bytes) including the negative-control path, so this host is NOT a
+    soft-404 catch-all — the 404s are real absences.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  soft_404_control:
+    path: /.well-known/control-probe-does-not-exist-9x8y7z
+    status: 404
+    bytes: 30645
+- host: https://auth.splitero.com
+  note: >-
+    Splitero's authentication host — a CNAME onto their Stytch tenant
+    (abundant-yogurt-9606.customers.stytch.com), serving the login for my.splitero.com. It is the
+    only host in the estate that serves a real machine-readable /.well-known/ document. The negative
+    control returns a 242-byte JSON 404, so this host is not a catch-all.
+  documents:
+  - path: /.well-known/jwks.json
+    status: 200
+    file: splitero-jwks.json
+    content_type: application/json
+    bytes: 1579
+    note: >-
+      RFC 7517 JSON Web Key Set for the live Stytch project — one RSA signing key
+      (kid jwk-live-e9f17cb0-94af-4ca7-b54c-aa19c28e7da5, RS256, use=sig). This is the key set that
+      verifies session JWTs for the consumer portal; it is not a developer API surface.
+  - path: /.well-known/openid-configuration
+    status: 400
+    note: >-
+      Answers with a Stytch error, not a discovery document:
+      "authorization_endpoint_not_configured_for_project". The tenant has not enabled an
+      authorization endpoint, so OIDC discovery is unavailable.
+  - path: /.well-known/oauth-authorization-server
+    status: 400
+    note: Same Stytch authorization_endpoint_not_configured_for_project error as above.
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  soft_404_control:
+    path: /.well-known/nonexistent-control-xyz
+    status: 404
+    bytes: 242
+- host: https://my.splitero.com
+  note: >-
+    Consumer portal (Next.js on Vercel; app.splitero.com redirects here). CATCH-ALL — every path,
+    including the negative control, returns HTTP 200 with the login page HTML and a
+    ?redirect=<path> query. No document was fetched or saved from this host and none of these 200s
+    is a hit.
+  hit_count: 0
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: HTML login page, not a document — redirected to /login?redirect=%2F.well-known%2Fsecurity.txt
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: HTML login page, not a document.
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: HTML login page, not a document.
+  soft_404_control:
+    path: /.well-known/nonexistent-control-xyz
+    status: 200
+    bytes: 14796
+    note: Catch-all confirmed — an invented path returns the same 200 login shell.
+summary:
+  hosts_probed: 3
+  documents_served: 1
+  security_txt: false
+  api_catalog: false
+  agent_card: false

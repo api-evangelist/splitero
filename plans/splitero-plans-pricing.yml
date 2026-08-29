@@ -1,0 +1,24 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  https://www.splitero.com/how-it-works and https://www.splitero.com/ — searched 2026-08-29. Splitero
+  publishes no plan, tier or rate-card page: an HEI is priced per property from an individual offer.
+plan_count: 0
+note: >-
+  Splitero sells a Home Equity Investment, not a subscription or metered product, so there are no
+  plans to record. Pricing is quote-based and originated per homeowner: the offer states the cash
+  advance (up to $500,000, capped at a share of the appraised value), the origination fee, third-party
+  closing costs, and the percentage of future home value Splitero receives at settlement. No published
+  fee table or rate card exists on splitero.com; the numbers reported by third-party review sites are
+  not first-party published values and are deliberately not recorded here.
+plans: []
+product:
+  type: home-equity-investment
+  consumer_facing: true
+  quote_based: true
+  max_advance_usd: 500000
+  max_term_years: 30
+  monthly_payments: false
+api_pricing:
+  applicable: false
+  note: Splitero publishes no API, so there is no API pricing surface to capture.

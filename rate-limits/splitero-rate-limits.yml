@@ -1,0 +1,14 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  No developer portal, API reference or documentation host exists on splitero.com (searched
+  2026-08-29; api./developers./docs.splitero.com do not resolve in DNS), so there is no published
+  rate-limit policy to capture.
+limit_count: 0
+note: >-
+  Splitero exposes no public API. The only HTTP surfaces on the estate are the marketing site
+  (www.splitero.com, behind a Cloudflare bot challenge), the authenticated consumer portal
+  (my.splitero.com), and the Stytch-backed auth host (auth.splitero.com). None documents rate limits,
+  and no RateLimit-*/X-RateLimit-*/Retry-After headers were observed on any anonymous response.
+limits: []
+headers_observed: []

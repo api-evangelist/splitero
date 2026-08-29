@@ -1,8 +1,15 @@
 aid: splitero
 name: Splitero
-description: 'Splitero is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Splitero is a San Diego, California fintech founded in 2021 by Michael Gifford and David
+  Zvaifler that originates Home Equity Investments (HEIs) — a lump sum of cash, up to $500,000, paid to
+  a homeowner today in exchange for a share of the home''s future value, with no monthly payments, no
+  income requirement, credit scores accepted from 500, and terms of up to 30 years. The company operates
+  a consumer application and servicing portal at my.splitero.com, funds its originations through institutional
+  capital commitments (including a $350M facility led by Blue Owl Capital), and has expanded into a licensed
+  residential brokerage, Splitero Homes. Splitero is an end-user consumer finance product: it publishes
+  no developer portal, no public API, no SDKs and no machine-readable contract of any kind.'
 url: https://raw.githubusercontent.com/api-evangelist/splitero/refs/heads/main/apis.yml
+image: https://www.splitero.com/apple-touch-icon.png
 x-type: company
 x-source: harvest:secondary-market
 x-tier: stub
@@ -12,6 +19,13 @@ created: '2026-08-29'
 modified: '2026-08-29'
 tags:
 - Company
+- Financial Services
+- Fintech
+- Real Estate
+- Home Equity
+- Lending
+- Mortgage
+- Consumer Finance
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +33,55 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/splitero-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.splitero.com/
+- type: Blog
+  url: https://www.splitero.com/blog
+- type: Support
+  url: https://www.splitero.com/contact
+- type: PrivacyPolicy
+  url: https://www.splitero.com/privacy-policy
+- type: TermsOfService
+  url: https://www.splitero.com/terms-of-use
+- type: Login
+  url: https://my.splitero.com/login
+- type: GitHubOrganization
+  url: https://github.com/SpliteroInc
+- type: WellKnown
+  url: well-known/splitero-well-known.yml
+- type: LLMsTxt
+  url: llms/splitero-llms.txt
+- type: Plans
+  url: plans/splitero-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/splitero-rate-limits.yml
+x-enrichment:
+  date: '2026-08-29'
+  status: minimal
+  artifacts_added: 6
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: Splitero sells a consumer home equity investment through an authenticated web application at
+    my.splitero.com; api.splitero.com, developers.splitero.com and docs.splitero.com do not resolve in
+    DNS, and the only machine-readable document anywhere on the estate is the JWKS of its Stytch login
+    tenant.
+  evidence:
+  - url: https://www.splitero.com/openapi.json
+    status: 403
+  - url: https://www.splitero.com/.well-known/api-catalog
+    status: 404
+  - url: https://www.splitero.com/.well-known/agent-card.json
+    status: 404
+  - url: https://www.splitero.com/llms.txt
+    status: 404
+  - url: https://my.splitero.com/openapi.json
+    status: 200
+  - url: https://auth.splitero.com/.well-known/jwks.json
+    status: 200
+  - url: https://auth.splitero.com/.well-known/openid-configuration
+    status: 400
+  checked: '2026-08-29'

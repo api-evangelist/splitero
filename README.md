@@ -64,5 +64,24 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Splitero is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+Splitero is a San Diego, California fintech founded in 2021 by Michael Gifford and David Zvaifler that
+originates Home Equity Investments (HEIs) — a lump sum of cash, up to $500,000, paid to a homeowner
+today in exchange for a share of the home's future value, with no monthly payments, no income
+requirement, credit scores accepted from 500, and terms of up to 30 years. It funds originations
+through institutional capital (including a $350M facility led by Blue Owl Capital) and operates a
+licensed residential brokerage, Splitero Homes.
+
+**Splitero publishes no public API.** There is no developer portal, no API reference, and no
+machine-readable contract of any kind — no OpenAPI, AsyncAPI, GraphQL, gRPC or WSDL, no SDK on any
+package registry, no MCP server and no A2A agent card. `api.splitero.com`, `developers.splitero.com`
+and `docs.splitero.com` do not resolve. The product is an end-user consumer finance application.
+
+What this profile does record is what was actually probed:
+
+- `well-known/` — every `/.well-known/` path across all three hosts, with status codes. One real
+  document was served: an RFC 7517 JWKS at `auth.splitero.com` (Splitero's Stytch tenant).
+- `security/` — TLS 1.3, HSTS on every host, CAA records, SPF, and DMARC at `p=reject`; DNSSEC off.
+- `plans/` and `rate-limits/` — honest zeros, with the reason.
+- `llms/` — a generated `llms.txt` describing the company and, explicitly, the absence of an API.
+
+- https://www.splitero.com/
