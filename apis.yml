@@ -9,6 +9,19 @@ description: 'Splitero is a San Diego, California fintech founded in 2021 by Mic
   residential brokerage, Splitero Homes. Splitero is an end-user consumer finance product: it publishes
   no developer portal, no public API, no SDKs and no machine-readable contract of any kind.'
 url: https://raw.githubusercontent.com/api-evangelist/splitero/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - rate-limits
+  - security
+  generated: '2026-09-02'
+  method: derived
 image: https://www.splitero.com/apple-touch-icon.png
 x-type: company
 x-source: harvest:secondary-market
